@@ -13,7 +13,7 @@ void send_tcp_message() {
     char buffer[BUF_SIZE];
 
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        printf("Falha na inicialização do Winsock.\n");
+        printf("Falha na inicializacao do Winsock.\n");
         return;
     }
 
@@ -29,7 +29,7 @@ void send_tcp_message() {
     serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     if (connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) == SOCKET_ERROR) {
-        printf("Conexão TCP falhou\n");
+        printf("Conexao TCP falhou\n");
         closesocket(sock);
         WSACleanup();
         return;
@@ -49,7 +49,7 @@ void send_udp_message() {
     char buffer[BUF_SIZE];
 
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        printf("Falha na inicialização do Winsock.\n");
+        printf("Falha na inicializacao do Winsock.\n");
         return;
     }
 
@@ -84,7 +84,7 @@ int main() {
         } else if (choice == 3) {
             break;
         } else {
-            printf("Escolha inválida!\n");
+            printf("Escolha invalida!\n");
         }
     }
     return 0;
