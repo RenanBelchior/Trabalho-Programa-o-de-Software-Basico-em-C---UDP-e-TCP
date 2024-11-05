@@ -12,10 +12,10 @@ void handle_tcp(SOCKET tcp_sock) {
     struct sockaddr_in client_addr;
     int addrlen = sizeof(client_addr);
 
-    printf("Esperando conexıes TCP...\n");
+    printf("Esperando conexoes TCP...\n");
     new_socket = accept(tcp_sock, (struct sockaddr*)&client_addr, &addrlen);
     if (new_socket == INVALID_SOCKET) {
-        perror("Falha na conex„o TCP");
+        perror("Falha na conex√£o TCP");
         closesocket(tcp_sock);
         WSACleanup();
         exit(EXIT_FAILURE);
@@ -52,11 +52,11 @@ int main() {
 
     // Inicializar o Winsock
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        printf("Falha na inicializaÁ„o do Winsock.\n");
+        printf("Falha na inicializacao do Winsock.\n");
         return 1;
     }
 
-    // ConfiguraÁ„o TCP
+    // Configura√ß√£o TCP
     tcp_sock = socket(AF_INET, SOCK_STREAM, 0);
     if (tcp_sock == INVALID_SOCKET) {
         printf("Erro ao criar socket TCP\n");
@@ -64,7 +64,7 @@ int main() {
         return 1;
     }
 
-    // ConfiguraÁ„o UDP
+    // Configura√ß√£o UDP
     udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (udp_sock == INVALID_SOCKET) {
         printf("Erro ao criar socket UDP\n");
@@ -96,11 +96,11 @@ int main() {
         return 1;
     }
 
-    // Processamento das conexıes TCP e UDP
+    // Processamento das conex√µes TCP e UDP
     HANDLE tcp_thread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)handle_tcp, (LPVOID)tcp_sock, 0, NULL);
     handle_udp(udp_sock);
 
-    // Fechar conexıes
+    // Fechar conex√µes
     WaitForSingleObject(tcp_thread, INFINITE);
     CloseHandle(tcp_thread);
     closesocket(tcp_sock);
@@ -109,4 +109,3 @@ int main() {
 
     return 0;
 }
-
